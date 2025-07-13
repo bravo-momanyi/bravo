@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Background | Bravo Osoro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: slideshow 60s infinite;
+      transition: background-image 1s ease-in-out;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* To improve readability */
+      text-align: left;
+    }
+
+    @keyframes slideshow {
+      0%   { background-image: url('/My website/1.jpg'); }
+      25%  { background-image: url('/My website/2.jpg'); }
+      50%  { background-image: url('/My website/3.jpg'); }
+      75%  { background-image: url('/My website/4.jpg'); }
+      100% { background-image: url('/My website/1.jpg'); }
+    }
+
+    .content {
+      max-width: 900px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Georgia', serif;
+      color: #ffcc00;
+    }
+
+    p {
+      font-size: 1.3rem;
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+
+    strong {
+      color: #00ffff;
+    }
+
+    .highlight {
+      color: #ff66cc;
+      font-weight: bold;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: rgba(0, 119, 204, 0.85);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: 0.5s;
+    }
+
+    a:hover {
+      background-color: rgba(0, 95, 163, 0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <h1>My Background</h1>
+
+    <p>My name is <strong>Bravin Momanyi Osoro</strong>, also known as <strong>Bravo</strong>. I was born on <span class="highlight">November 22, 2006</span>, in a peaceful and beautiful village called <strong>Kiomakondo</strong>, located in the Mwamosioma area of <strong>Kisii County</strong>, Kenya.</p>
+
+    <p>I was raised and still live in Kiomakondo. The quiet environment, green hills, and strong community spirit shaped my values: simplicity, humility, and hard work. Life in the village made me curious, creative, and focused.</p>
+
+    <p>Since childhood, I’ve had a deep interest in understanding how things work — especially in technology. That curiosity led me into the world of computers, design, and development. I enjoy creating systems and solutions that make life easier and more efficient.</p>
+
+    <p>Today, I am more than a student. I am a system builder in the making — with a dream to transform lives through software and creativity, starting right from my small village to the world.</p>
+
+    <a href="index.html">← Back to Home</a>
+  </div>
+
+</body>
+</html>
