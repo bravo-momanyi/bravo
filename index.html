@@ -89,18 +89,35 @@
     <a href="education.html">My Education</a>
     <a href="contact.html">Contact Me</a>
   </div>
-  <button onclick="checkPassword()">Relationship</button>
+  <a href="#" onclick="secureAccess()" style="text-decoration:none; font-weight:bold; color:#ffd700; background:#222; padding:10px 15px; border-radius:8px;">Relationship</a>
 
 <script>
-  function checkPassword() {
-    const correctPassword = "Sheba"; // 🔑 Change this to your secret password
-    const entered = prompt("Enter password to access this page:");
+  function secureAccess() {
+    const correctPassword = "ShebaOnly"; // ✅ Set your custom password here
 
-    if (entered === correctPassword) {
-      window.location.href = "relationship.html";
-    } else if (entered !== null) {
-      alert("Incorrect password. Access denied.");
+    function promptPassword() {
+      const entered = prompt("🔐 Enter password to access this page:");
+      
+      // If user cancels prompt
+      if (entered === null) return;
+
+      // If password is correct
+      if (entered === correctPassword) {
+        alert("✅ Welcome!");
+        setTimeout(() => {
+          window.location.href = "relationship.html";
+        }, 2000);
+      } else {
+        // If incorrect password
+        const tryAgain = confirm("❌ Wrong password.\nWould you like to try again?");
+        if (tryAgain) {
+          promptPassword(); // Show prompt again
+        } 
+        // Else = Cancel → do nothing, stay on homepage
+      }
     }
+
+    promptPassword(); // Start the flow
   }
 </script>
 
