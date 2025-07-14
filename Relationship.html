@@ -5,42 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Relationship | Bravo & Sheba</title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
 
+    /* Page hidden initially */
+    #mainContent {
+      display: none;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Background slideshow */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      color: #ffffff;
-      background-size: contain;
-      background-repeat: no-repeat;
+      background-size: cover;
       background-position: center;
-      background-color: #000;
       animation: slideshow 60s infinite;
       height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
+      color: white;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
 
     @keyframes slideshow {
       0%   { background-image: url('9.jpg'); }
-      10%  { background-image: url('10.jpg'); }
-      20%  { background-image: url('12.jpg'); }
-      30%  { background-image: url('13.jpg'); }
-      40%  { background-image: url('14.jpg'); }
-      50%  { background-image: url('15.jpg'); }
-      60%  { background-image: url('9.jpg'); }
-      70%  { background-image: url('12.jpg'); }
+      16%  { background-image: url('10.jpg'); }
+      32%  { background-image: url('11.jpg'); }
+      48%  { background-image: url('12.jpg'); }
+      64%  { background-image: url('13.jpg'); }
       80%  { background-image: url('14.jpg'); }
-      90%  { background-image: url('10.jpg'); }
-      100%  { background-image: url('15.jpg'); }
-      
+      100% { background-image: url('15.jpg'); }
     }
 
     .content {
@@ -97,10 +100,81 @@
     .back:hover {
       background-color: #fff176;
     }
+
+    /* Password Modal */
+    #passwordModal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .modal-box input {
+      padding: 10px;
+      font-size: 1.1rem;
+      width: 80%;
+      max-width: 300px;
+      border: 2px solid #007bff;
+      border-radius: 8px;
+    }
+
+    .modal-box button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .modal-box .submit {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .modal-box .cancel {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    #errorMsg {
+      color: red;
+      margin-top: 10px;
+      display: none;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
 
+<!-- 🔐 Password Modal -->
+<div id="passwordModal">
+  <div class="modal-box">
+    <h2 style="color:#007bff;">🔐 Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password..." />
+    <br />
+    <button class="submit" onclick="checkPassword()">Submit</button>
+    <button class="cancel" onclick="closePage()">Cancel</button>
+    <p id="errorMsg">❌ Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- ✅ Hidden Page Content -->
+<div id="mainContent">
   <div class="content">
       <h1>Our Journey Together</h1>
 
@@ -129,6 +203,27 @@
 
     <a class="back" href="index.html">← Back to Home</a>
   </div>
+</div>
+
+<!-- 🔐 Script -->
+<script>
+  const correctPassword = "Shebah";
+
+  function checkPassword() {
+    const entered = document.getElementById("passwordInput").value;
+    if (entered === correctPassword) {
+      document.getElementById("passwordModal").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+      document.body.style.overflow = "auto";
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
+    }
+  }
+
+  function closePage() {
+    window.location.href = "index.html"; // Cancel goes back to homepage
+  }
+</script>
 
 </body>
 </html>
