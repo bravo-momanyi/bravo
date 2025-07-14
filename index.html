@@ -89,37 +89,51 @@
     <a href="education.html">My Education</a>
     <a href="contact.html">Contact Me</a>
   </div>
-  <a href="#" onclick="secureAccess()" style="text-decoration:none; font-weight:bold; color:#ffd700; background:#222; padding:10px 15px; border-radius:8px;">Relationship</a>
+  <!-- Relationship Button -->
+<button onclick="openPasswordModal()" style="background-color:#007bff; color:white; padding:10px 20px; border:none; border-radius:8px; font-size:1rem; cursor:pointer;">Relationship</button>
 
+<!-- Password Modal -->
+<div id="passwordModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(255,255,255,0.9); z-index:9999; display:flex; align-items:center; justify-content:center;">
+  <div style="background:white; padding:30px; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.2); max-width:90%; text-align:center; font-family:Segoe UI, sans-serif;">
+    <h2 style="color:#007bff; margin-bottom:15px;">🔐 Enter Password</h2>
+    <input id="passwordInput" type="password" placeholder="Enter password..." style="padding:10px; font-size:1.1rem; width:80%; max-width:300px; border:2px solid #007bff; border-radius:8px;"><br><br>
+    <button onclick="checkPassword()" style="background-color:#28a745; color:white; padding:8px 16px; border:none; border-radius:5px; font-size:1rem; margin:5px;">Submit</button>
+    <button onclick="closeModal()" style="background-color:#dc3545; color:white; padding:8px 16px; border:none; border-radius:5px; font-size:1rem; margin:5px;">Cancel</button>
+    <p id="errorMsg" style="color:red; margin-top:10px; display:none;">❌ Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- JavaScript Logic -->
 <script>
-  function secureAccess() {
-    const correctPassword = "Shebah"; // ✅ Set your custom password here
+  const correctPassword = "Shebah";
 
-    function promptPassword() {
-      const entered = prompt("🔐 Enter password to access this page:");
-      
-      // If user cancels prompt
-      if (entered === null) return;
+  function openPasswordModal() {
+    document.getElementById("passwordModal").style.display = "flex";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("errorMsg").style.display = "none";
+  }
 
-      // If password is correct
-      if (entered === correctPassword) {
-        alert("✅ Welcome!");
-        setTimeout(() => {
-          window.location.href = "Relationship.html";
-        }, 2000);
-      } else {
-        // If incorrect password
-        const tryAgain = confirm("❌ Wrong password.\nWould you like to try again?");
-        if (tryAgain) {
-          promptPassword(); // Show prompt again
-        } 
-        // Else = Cancel → do nothing, stay on homepage
-      }
+  function closeModal() {
+    document.getElementById("passwordModal").style.display = "none";
+  }
+
+  function checkPassword() {
+    const entered = document.getElementById("passwordInput").value;
+
+    if (entered === correctPassword) {
+      document.getElementById("errorMsg").style.display = "none";
+      document.getElementById("passwordModal").innerHTML = `
+        <div style="background:white; padding:30px; border-radius:15px; box-shadow:0 0 20px rgba(0,0,0,0.2); font-family:Segoe UI, sans-serif; text-align:center;">
+          <h2 style="color:green; font-size:1.5rem;">✅ Welcome!</h2>
+          <p style="font-size:1.1rem;">Redirecting...</p>
+        </div>`;
+      setTimeout(() => {
+        window.location.href = "Relationship.html";
+      }, 2000);
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
     }
-
-    promptPassword(); // Start the flow
   }
 </script>
-
 </body>
 </html>
