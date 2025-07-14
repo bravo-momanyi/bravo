@@ -15,43 +15,44 @@
       font-family: 'Segoe UI', sans-serif;
       color: #ffffff;
       background-size: contain;
-      background-position: center;
       background-repeat: no-repeat;
-      animation: slideshow 50s infinite;
-      min-height: 100vh;
-      padding: 2rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      background-position: center;
+      background-color: #000;
+      animation: slideshow 60s infinite;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     }
 
     @keyframes slideshow {
       0%   { background-image: url('9.jpg'); }
-      14%  { background-image: url('10.jpg'); }
-      28%  { background-image: url('11.jpg'); }
-      42%  { background-image: url('12.jpg'); }
-      57%  { background-image: url('13.jpg'); }
-      71%  { background-image: url('14.jpg'); }
-      85%  { background-image: url('15.jpg'); }
-      100% { background-image: url('9.jpg'); }
+      16%  { background-image: url('10.jpg'); }
+      32%  { background-image: url('11.jpg'); }
+      48%  { background-image: url('12.jpg'); }
+      64%  { background-image: url('13.jpg'); }
+      80%  { background-image: url('14.jpg'); }
+      100% { background-image: url('15.jpg'); }
     }
 
     .content {
-      max-width: 950px;
-      margin: auto;
-      padding: 2rem;
+      max-width: 900px;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
       color: #ffd700;
     }
 
     p {
-      font-size: 1.4rem;
-      line-height: 1.9;
-      margin-bottom: 1.5rem;
-      text-align: justify;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
     strong {
@@ -71,21 +72,21 @@
     .signature {
       text-align: right;
       font-style: italic;
-      margin-top: 2rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #ffccff;
+      margin-top: 0.8rem;
     }
 
     .back {
       display: inline-block;
-      margin-top: 2rem;
-      padding: 0.8rem 1.6rem;
-      background-color: rgba(255, 215, 0, 0.9);
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: rgba(255, 215, 0, 0.85);
       color: #000;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .back:hover {
@@ -96,7 +97,7 @@
 <body>
 
   <div class="content">
-    <h1>Our Journey Together</h1>
+      <h1>Our Journey Together</h1>
 
     <p>
       In the pages of my life, there are many stories — but few as precious as the one I share with <strong>Bathsheba Nyomenda Otudo</strong>, known fondly as <em>Sheba</em>. She is not only my closest friend but also a constant pillar of support and inspiration.
@@ -117,10 +118,9 @@
     <p>
       I believe love should not only be felt but also acknowledged, and today, I choose to honor Sheba publicly as someone who adds genuine value to my life.
     </p>
-
-    <div class="signature">
-      — Bravin Momanyi Osoro
-    </div>
+    
+    
+    <div class="signature">— Bravin Momanyi Osoro</div>
 
     <a class="back" href="index.html">← Back to Home</a>
   </div>
