@@ -88,8 +88,21 @@
     <a href="family.html">My Family</a>
     <a href="education.html">My Education</a>
     <a href="contact.html">Contact Me</a>
-    <a href="Relationship.html">Relationship</a>
   </div>
+  <button onclick="checkPassword()">Relationship</button>
+
+<script>
+  function checkPassword() {
+    const correctPassword = "Sheba"; // 🔑 Change this to your secret password
+    const entered = prompt("Enter password to access this page:");
+
+    if (entered === correctPassword) {
+      window.location.href = "relationship.html";
+    } else if (entered !== null) {
+      alert("Incorrect password. Access denied.");
+    }
+  }
+</script>
 
 </body>
 </html>
