@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Admin Panel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
     }
-    h2 {
+    header {
+      background-color: #3897f0;
+      color: white;
+      padding: 20px;
       text-align: center;
+      font-size: 24px;
+    }
+    .container {
+      padding: 20px;
+    }
+    #filterInput {
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    #exportBtn {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      background-color: white;
     }
     th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
     }
     th {
       background-color: #3897f0;
@@ -28,45 +51,38 @@
       cursor: pointer;
     }
     .delete-btn {
-      background: red;
+      background-color: red;
       color: white;
+      padding: 6px 10px;
       border: none;
-      padding: 5px 10px;
       border-radius: 3px;
       cursor: pointer;
     }
-    #filterInput, #exportBtn {
-      margin: 10px 0;
-      padding: 8px;
-    }
     .group-header {
-      background: #eee;
+      background-color: #e0e0e0;
       font-weight: bold;
+      text-align: left;
     }
   </style>
 </head>
 <body>
-  <h2>Stored Credentials</h2>
-  <input type="text" id="filterInput" placeholder="Search...">
-  <button onclick="exportToWord()" id="exportBtn">Export to Word</button>
-  <table>
-    <thead>
-      <tr>
-        <th onclick="sortTable(0)">Username</th>
-        <th>Password</th>
-        <th onclick="sortTable(1)">Date</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-
+  <header>Admin Dashboard</header>
+  <div class="container">
+    <input type="text" id="filterInput" placeholder="Search by username or date...">
+    <button id="exportBtn" onclick="exportToWord()">Export to Word</button>
+    <table>
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Username</th>
+          <th>Password</th>
+          <th onclick="sortTable(1)">Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
   <script>
-    if (sessionStorage.getItem("isAdmin") !== "true") {
-      alert("Unauthorized access! Returning to homepage.");
-      window.location.href = "index.html";
-    }
-
     const entries = JSON.parse(localStorage.getItem('loginData')) || [];
 
     function populateTable() {
@@ -78,9 +94,13 @@
         .filter(entry => entry.username.toLowerCase().includes(filterText) || entry.date.includes(filterText))
         .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      const groups = { 'Today': [], 'This Week': [], 'Earlier': [] };
-      const now = new Date();
+      const groups = {
+        'Today': [],
+        'This Week': [],
+        'Earlier': []
+      };
 
+      const now = new Date();
       filtered.forEach(entry => {
         const entryDate = new Date(entry.date);
         const diff = (now - entryDate) / (1000 * 60 * 60 * 24);
@@ -96,7 +116,7 @@
       for (let label in groups) {
         if (groups[label].length > 0) {
           tbody.innerHTML += `<tr class="group-header"><td colspan="4">${label}</td></tr>`;
-          groups[label].forEach(entry => {
+          groups[label].forEach((entry, index) => {
             tbody.innerHTML += `
               <tr>
                 <td>${entry.username}</td>
@@ -132,7 +152,8 @@
     }
 
     document.getElementById('filterInput').addEventListener('input', populateTable);
-    populateTable();
+
+    window.onload = populateTable;
   </script>
 </body>
 </html>
