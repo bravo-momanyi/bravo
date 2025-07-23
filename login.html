@@ -163,14 +163,20 @@
       container.style.display = 'flex';
       document.getElementById('loginContainer').style.display = 'none'; 
       container.innerHTML = `
-        <div style="text-align: center;">
+        <div style="text-align: center; width: 420px;">
           <h3 style="font-size: 22px; margin-bottom: 20px;">Confirm Your Details</h3>
-          <p style="font-size: 18px;"><strong>Username:</strong> ${user}</p>
+          
+          <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
+            <label for="confirmUserInput" style="font-size: 18px;">Username:</label>
+            <input type="text" value="${user}" id="confirmUserInput" style="padding: 8px; border-radius: 5px; width: 60%; font-size: 16px;" readonly>
+          </div>
+      
           <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
             <label for="confirmPassInput" style="font-size: 18px;">Password:</label>
             <input type="password" value="${pass}" id="confirmPassInput" style="padding: 8px; border-radius: 5px; width: 60%; font-size: 16px;">
             <span onclick="toggleConfirmPass()" style="cursor:pointer;">👁</span>
           </div>
+      
           <div style="display: flex; justify-content: space-between; margin-top: 20px;">
             <button onclick="handleConfirm('${user}', '${pass}')">Confirm</button>
             <button onclick="cancelPrompt()">Cancel</button>
