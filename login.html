@@ -161,22 +161,23 @@
 
      const container = document.getElementById('confirmPrompt');
       container.style.display = 'flex';
-      document.getElementById('loginContainer').style.display = 'none';
-      
+      document.getElementById('loginContainer').style.display = 'none'; 
       container.innerHTML = `
-        <div>
-          <p><strong>Confirm your details:</strong></p>
-          <p>Username: ${user}</p>
-          <p>Password: 
-            <input type="password" value="${pass}" id="confirmPassInput" style="width: 80%; padding: 5px; border-radius: 5px;"> 
+        <div style="text-align: center;">
+          <h3 style="font-size: 22px; margin-bottom: 20px;">Confirm Your Details</h3>
+          <p style="font-size: 18px;"><strong>Username:</strong> ${user}</p>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0;">
+            <label for="confirmPassInput" style="font-size: 18px;">Password:</label>
+            <input type="password" value="${pass}" id="confirmPassInput" style="padding: 8px; border-radius: 5px; width: 60%; font-size: 16px;">
             <span onclick="toggleConfirmPass()" style="cursor:pointer;">👁</span>
-          </p>
-          <div style="display: flex; justify-content: space-between;">
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 20px;">
             <button onclick="handleConfirm('${user}', '${pass}')">Confirm</button>
             <button onclick="cancelPrompt()">Cancel</button>
           </div>
         </div>
       `;
+
 
     }
 
